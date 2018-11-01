@@ -4,7 +4,7 @@
 # POC: strcmp timing attack
 # -*- coding: utf-8 -*-
 
-target = "My super secret passphrase."
+target = "My super secret passphrase..."
 print ("Size: %d" % len(target))
 print ("Target: %s" % target)
 
