@@ -3,7 +3,7 @@
 # GPLv3
 # POC: strcmp timing attack
 
-target = "My super secret passphrase  "
+target = "My super secret passphrase."
 print "Real: ",len(target)
 
 def strcmp(a,b):
@@ -19,7 +19,7 @@ def gettime():
 	return time.time()
 
 def measure(cand):
-	res = 1000
+	res = 5000
 	#res = 10000
 
 	t0 = gettime()
@@ -40,16 +40,14 @@ def guess_len():
 	return best_i
 
 def pwnOracle():
-	time = 0
 	l =  guess_len()
-	print l
+	print "guess_len:",l
 	candidate = list("A" * l)
 	tmp = ""
-	#best = 0.000000000000000000
 	for i in range(0,l):
 		best = 0.00000000000000000
 		best_c = ""
-		for j in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ":
+		for j in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ":
 			c = ord(j)
 			candidate[i] = chr(c)
 			d = measure("".join(candidate))
@@ -60,6 +58,5 @@ def pwnOracle():
 		candidate[i] = best_c
 		tmp += best_c
 		print "best:",tmp
-	print tmp
 
 pwnOracle()
