@@ -24,13 +24,13 @@ import time
 def gettime():
 	return time.time()
 
-def measure(cand):
+def measure(candidate):
 	res = 10000
 	#res = 10000
 	t0 = gettime()
 	for k in range(0,res):
-        	strcmp(target,cand)
-		#strcmp2(target,cand)
+        	strcmp(target,candidate)
+		#strcmp2(target,candidate)
 	t1 = gettime()
 	return (t1-t0)
 
