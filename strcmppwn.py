@@ -4,7 +4,7 @@
 # POC: strcmp timing attack
 
 target = "My super secret passphrase."
-print "Real: ",len(target)
+print ("Real: %d" % len(target))
 
 def strcmp(a,b):
 	if len(a) != len(b):
@@ -25,23 +25,23 @@ def measure(cand):
 	t0 = gettime()
 	for k in range(0,res):
         	ret = strcmp(target,cand)
-      	t1 = gettime()
+	t1 = gettime()
 	return (t1-t0)
 
 def guess_len():
 	best = 0.000000000000000000000
 	for i in range(1,30):
 		t = measure("A" * i)
-		print i,t
+		print ("%d,%2.10f" % (i,t))
 		if t >= best:
 			best = t
 			best_i = i
-	print "best:",best,best_i
+	print ("best: %d,%2.10f" % (best,best_i))
 	return best_i
 
 def pwnOracle():
 	l =  guess_len()
-	print "guess_len:",l
+	print ("guess_len: %d" % l)
 	candidate = list("A" * l)
 	tmp = ""
 	for i in range(0,l):
@@ -55,9 +55,9 @@ def pwnOracle():
 			if d > best:
 				best = d
 				best_c = chr(c)
-			print candidate,d
+			print ("%s %2.10f" % (candidate,d))
 		candidate[i] = best_c
 		tmp += best_c
-		print "best:",tmp
+		print ("Best: %s" % tmp)
 
 pwnOracle()
