@@ -18,7 +18,7 @@ def gettime():
 	return time.time()
 
 def measure(cand):
-	res = 1000000
+	res = 1000
 	#res = 10000
 
 	t0 = gettime()
@@ -44,10 +44,10 @@ def pwnOracle():
 	print l
 	candidate = list("A" * l)
 	tmp = ""
-	for i in range(0,l-1):
+	for i in range(0,l):
 		best = 0.00000000000000000
 		best_c = ""
-		for j in "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+		for j in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ":
 			c = ord(j)
 			candidate[i] = chr(c)
 			d = measure("".join(candidate))
