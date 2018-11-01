@@ -3,12 +3,13 @@
 # GPLv3
 # POC: strcmp timing attack
 
-target = "My super secret phrase"
+target = "My super secret passphrase  "
+print "Real: ",len(target)
 
 def strcmp(a,b):
 	if len(a) != len(b):
 		return 1
-	for i in range(0,len(a)-1):
+	for i in range(0,len(a)):
 		if a[i] != b[i]:
 			return 1
 	return 0
@@ -44,6 +45,7 @@ def pwnOracle():
 	print l
 	candidate = list("A" * l)
 	tmp = ""
+	#best = 0.000000000000000000
 	for i in range(0,l):
 		best = 0.00000000000000000
 		best_c = ""
