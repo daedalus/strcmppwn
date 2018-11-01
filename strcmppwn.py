@@ -18,7 +18,7 @@ def gettime():
 	return time.time()
 
 def measure(cand):
-	res = 100000
+	res = 1000000
 	#res = 10000
 
 	t0 = gettime()
@@ -38,7 +38,7 @@ def guess_len():
 	print "best:",best,best_i
 	return best_i
 
-def pwn():
+def pwnOracle():
 	time = 0
 	l =  guess_len()
 	print l
@@ -59,16 +59,5 @@ def pwn():
 		tmp += best_c
 		print "best:",tmp
 	print tmp
-pwn()
 
-#print len(target)
-#best = 1
-#for i in "ABCDEFGHIJKLMNOP":
-#	t = measure(i)
-#	print i,t
-#	if t <= best:
-#		best = t
-#		best_c = i
-#print best,best_c
-#print measure(target)
-
+pwnOracle()
