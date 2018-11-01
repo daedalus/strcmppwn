@@ -47,8 +47,9 @@ def pwnOracle():
 	for i in range(0,l):
 		best = 0.00000000000000000
 		best_c = ""
-		for j in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ":
-			c = ord(j)
+		#for j in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ":
+		for c in range(0,255):
+			#c = ord(j)
 			candidate[i] = chr(c)
 			d = measure("".join(candidate))
 			if d > best:
