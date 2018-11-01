@@ -59,6 +59,7 @@ def pwnOracle():
 	candidate = list(" " * l)
 	tmp = ""
 	for i in range(0,l):
+		print("pos: %d" % (i+1))
 		best = 0.00000000000000000
 		best_c = ""
 		for c in chargen(True):
