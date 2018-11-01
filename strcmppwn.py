@@ -16,7 +16,7 @@ def strcmp(a,b):
 			return 1
 	return 0
 
-
+# it seems that the native python string comparison is safe
 def strcmp2(a,b):
 	return a == b
 
@@ -24,20 +24,19 @@ import time
 def gettime():
 	return time.time()
 
-def measure(candidate):
+def measure(function,target,candidate):
 	res = 10000
 	#res = 10000
 	t0 = gettime()
 	for k in range(0,res):
-        	strcmp(target,candidate)
-		#strcmp2(target,candidate)
+		function(target,candidate)
 	t1 = gettime()
 	return (t1-t0)
 
 def guess_len():
 	best = 0.000000000000000000000
 	for i in range(1,30):
-		t = measure("A" * i)
+		t = measure(strcmp,target,"A" * i)
 		print ("%d,%2.10f" % (i,t))
 		if t >= best:
 			best = t
@@ -64,7 +63,7 @@ def pwnOracle():
 		best_c = ""
 		for c in chargen(True):
 			candidate[i] = c
-			d = measure("".join(candidate))
+			d = measure(strcmp,target,"".join(candidate))
 			if d > best:
 				best = d
 				best_c = c
