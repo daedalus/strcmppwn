@@ -16,16 +16,21 @@ def strcmp(a,b):
 			return 1
 	return 0
 
+
+def strcmp2(a,b):
+	return a == b
+
 import time
 def gettime():
 	return time.time()
 
 def measure(cand):
-	res = 5000
+	res = 10000
 	#res = 10000
 	t0 = gettime()
 	for k in range(0,res):
-        	ret = strcmp(target,cand)
+        	strcmp(target,cand)
+		#strcmp2(target,cand)
 	t1 = gettime()
 	return (t1-t0)
 
@@ -51,7 +56,7 @@ def chargen(alpha=False):
 def pwnOracle():
 	l =  guess_len()
 	print ("guess_len: %d" % l)
-	candidate = list("A" * l)
+	candidate = list(" " * l)
 	tmp = ""
 	for i in range(0,l):
 		best = 0.00000000000000000
