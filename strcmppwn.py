@@ -2,6 +2,7 @@
 # Author Dario Clavijo 2018
 # GPLv3
 # POC: strcmp timing attack
+# -*- coding: utf-8 -*-
 
 target = "My super secret passphrase."
 print ("Real: %d" % len(target))
