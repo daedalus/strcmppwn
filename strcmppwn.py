@@ -5,7 +5,8 @@
 # -*- coding: utf-8 -*-
 
 target = "My super secret passphrase."
-print ("Real: %d" % len(target))
+print ("Size: %d" % len(target))
+print ("Target: %s" % target)
 
 def strcmp(a,b):
 	if len(a) != len(b):
@@ -22,7 +23,6 @@ def gettime():
 def measure(cand):
 	res = 5000
 	#res = 10000
-
 	t0 = gettime()
 	for k in range(0,res):
         	ret = strcmp(target,cand)
@@ -37,8 +37,16 @@ def guess_len():
 		if t >= best:
 			best = t
 			best_i = i
-	print ("best: %d,%2.10f" % (best,best_i))
+	#print ("best: %d,%2.10f" % (best_i,best))
 	return best_i
+
+def chargen(alpha=False):
+	if alpha:
+		for c in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ":
+			yield c
+	else:
+		for i in range(0,255):
+			yield chr(i)
 
 def pwnOracle():
 	l =  guess_len()
@@ -48,14 +56,12 @@ def pwnOracle():
 	for i in range(0,l):
 		best = 0.00000000000000000
 		best_c = ""
-		#for j in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ":
-		for c in range(0,255):
-			#c = ord(j)
-			candidate[i] = chr(c)
+		for c in chargen(True):
+			candidate[i] = c
 			d = measure("".join(candidate))
 			if d > best:
 				best = d
-				best_c = chr(c)
+				best_c = c
 			print ("%s %2.10f" % (candidate,d))
 		candidate[i] = best_c
 		tmp += best_c
