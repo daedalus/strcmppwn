@@ -6,15 +6,12 @@
 
 target = "My super secret passphrase..."
 print ("Size: %d" % len(target))
-print ("Target: %s" % target)
+print(f"Target: {target}")
 
 def strcmp(a,b):
 	if len(a) != len(b):
 		return 1
-	for i in range(0,len(a)):
-		if a[i] != b[i]:
-			return 1
-	return 0
+	return next((1 for i in range(0,len(a)) if a[i] != b[i]), 0)
 
 # it seems that the native python string comparison is safe
 def strcmp2(a,b):
@@ -28,7 +25,7 @@ def measure(function,target,candidate):
 	res = 10000
 	#res = 10000
 	t0 = gettime()
-	for k in range(0,res):
+	for _ in range(0,res):
 		function(target,candidate)
 	t1 = gettime()
 	return (t1-t0)
@@ -46,8 +43,7 @@ def guess_len():
 
 def chargen(alpha=False):
 	if alpha:
-		for c in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. ":
-			yield c
+		yield from "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ. "
 	else:
 		for i in range(0,255):
 			yield chr(i)
@@ -70,6 +66,6 @@ def pwnOracle():
 			print ("%s %2.10f" % (candidate,d))
 		candidate[i] = best_c
 		tmp += best_c
-		print ("Best: %s" % tmp)
+		print(f"Best: {tmp}")
 
 pwnOracle()
